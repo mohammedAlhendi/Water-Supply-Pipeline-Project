@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>شبكة مياه مواصي القرارة | التقرير النهائي للمشروع</title>
+<meta name="description" content="مشروع توزيع وتوصيل شبكات المياه في مواصي القرارة: 4,825 متراً من الأنابيب، 20 نقطة توزيع، بالتنسيق مع مصلحة مياه بلديات الساحل وبتمويل مؤسسة وفاء المحسنين الخيرية.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Noto+Kufi+Arabic:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --abyss:#08243F; --deep:#0E3B5F; --water:#1B8FB8; --foam:#D8EEF5; --reed:#5B9A2E; --sand:#D3A04A;
+  --paper:#F3F7F8; --ink:#10202D; --mute:#51636F; --line:#CFDDE5;
+  --c4:#0E3B5F; --c3:#1B8FB8; --c2:#59B8D6; --c1:#6FA83A;
+  --h4:#2A9CC6; --h3:#4FB3D6; --h2:#85CCE4; --h1:#BDE5F1;
+  --kufi:"Noto Kufi Arabic","Segoe UI",Tahoma,Arial,sans-serif;
+  --sans:"IBM Plex Sans Arabic","Segoe UI",Tahoma,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.9;font-size:1.0625rem;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sand);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1160px,100% - 2.5rem);margin-inline:auto}
+h1,h2,h3{font-family:var(--kufi);line-height:1.45;font-weight:700}
+h2{font-size:clamp(1.55rem,3.2vw,2.35rem);color:var(--abyss);margin-bottom:1rem}
+p{max-width:62ch}
+section{padding:clamp(3.5rem,8vw,6.5rem) 0}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(8,36,63,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.1)}
+.top .wrap{display:flex;align-items:center;gap:1.5rem;height:64px}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:#fff;font-family:var(--kufi);font-weight:700;font-size:.95rem;white-space:nowrap}
+.brand img{width:34px;height:34px}
+.top nav{margin-inline-start:auto;display:flex;gap:1.4rem;overflow-x:auto;scrollbar-width:none}
+.top nav a{color:#CFE6F0;text-decoration:none;font-size:.95rem;white-space:nowrap;padding:.2rem 0;border-bottom:2px solid transparent}
+.top nav a:hover{color:#fff;border-color:var(--sand)}
+@media(max-width:720px){.brand span{display:none}}
+
+/* hero */
+.hero{position:relative;background:var(--abyss);color:#fff;padding:clamp(3rem,7vw,5.5rem) 0 clamp(3rem,6vw,4.5rem);overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url("images/hero-bg.jpg") center/cover;opacity:.2;filter:saturate(.6)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,36,63,.55),var(--abyss) 88%)}
+.hero h1{font-size:clamp(2rem,5.2vw,3.7rem);font-weight:800;max-width:19ch;line-height:1.4}
+.hero h1 .n{color:var(--sand)}
+.hero .lead{margin-top:1.4rem;font-size:clamp(1.02rem,1.6vw,1.18rem);color:#CFE6F0;max-width:58ch}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.btn{display:inline-flex;align-items:center;font-family:var(--kufi);font-weight:600;font-size:.98rem;padding:.8rem 1.5rem;border-radius:6px;text-decoration:none;border:2px solid transparent;transition:background .2s,color .2s,border-color .2s}
+.btn.main{background:var(--sand);color:var(--abyss)}
+.btn.main:hover{background:#E4B565}
+.btn.alt{border-color:rgba(255,255,255,.4);color:#fff}
+.btn.alt:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+
+/* pipe visualisation */
+.pipeviz{margin-top:clamp(2.5rem,6vw,4rem)}
+.pipe-row{display:flex;align-items:center;gap:0;min-height:110px}
+.source{flex:none;width:clamp(64px,9vw,104px);height:clamp(64px,9vw,104px);border-radius:14px;background:#0E3B5F;border:2px solid var(--h4);display:grid;place-items:center;text-align:center;font-size:.72rem;line-height:1.35;padding:.4rem;color:#CFE6F0;font-family:var(--kufi)}
+.source svg{width:26px;height:26px;margin:0 auto .15rem}
+.pipe{flex:1;display:flex;align-items:center}
+.seg{flex:var(--m) 1 0;height:var(--d);border:0;padding:0;position:relative;cursor:pointer;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0) 32%,rgba(0,0,0,.28)),var(--c);transform-origin:right center;animation:grow .75s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i)*.5s + .35s);transition:filter .2s}
+.seg::before{content:"";position:absolute;inset-inline-end:-5px;top:50%;width:10px;height:calc(var(--d) + 22px);transform:translateY(-50%);background:var(--foam);border-radius:3px;z-index:2}
+.seg:last-child::before{display:none}
+.seg::after{content:"";position:absolute;inset:36% 0 36% 0;background:repeating-linear-gradient(to left,transparent 0 22px,rgba(255,255,255,.4) 22px 30px);animation:flow 1.6s linear infinite}
+.seg.on,.seg:hover{filter:brightness(1.18)}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes flow{from{background-position-x:0}to{background-position-x:-52px}}
+.outlet{flex:none;display:grid;grid-template-columns:repeat(4,10px);gap:6px;padding-inline-start:14px}
+.outlet i{width:10px;height:10px;border-radius:50%;background:var(--c1);box-shadow:0 0 0 2px rgba(111,168,58,.3)}
+.legend{list-style:none;padding:0;margin-top:2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.legend li{padding:.9rem 1rem;border-inline-start:4px solid var(--k);background:rgba(255,255,255,.05);border-radius:2px;transition:background .2s}
+.legend li.on{background:rgba(255,255,255,.12)}
+.legend b{display:block;font-family:var(--kufi);font-size:.98rem;font-weight:700}
+.legend .m{display:block;font-size:1.35rem;font-weight:600;color:#fff;line-height:1.5}
+.legend em{display:block;font-style:normal;font-size:.9rem;color:#B5D3E0;line-height:1.6}
+.pipenote{margin-top:1.1rem;font-size:.88rem;color:#9FC2D2}
+@media(max-width:820px){.legend{grid-template-columns:1fr 1fr}.outlet{display:none}}
+@media(prefers-reduced-motion:reduce){.seg,.seg::after{animation:none}}
+
+/* statement */
+.statement{background:#fff;padding:clamp(3rem,6vw,4.5rem) 0}
+.statement p{font-family:var(--kufi);font-size:clamp(1.35rem,3vw,2.15rem);line-height:1.7;max-width:30ch;font-weight:600;color:var(--abyss)}
+.statement p b{color:var(--water);font-weight:800}
+.statement .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center}
+.ledger{font-size:1rem}
+.ledger h3{font-size:1.05rem;color:var(--mute);margin-bottom:.6rem;font-weight:600}
+.ledger .r{display:flex;align-items:baseline;gap:.6rem;padding:.42rem 0}
+.ledger .r i{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px)}
+.ledger .r b{font-weight:600;white-space:nowrap}
+.ledger .tot{border-top:2px solid var(--abyss);margin-top:.4rem;padding-top:.7rem;font-weight:700}
+.ledger .gap{height:1.4rem}
+@media(max-width:820px){.statement .wrap{grid-template-columns:1fr;gap:2rem}}
+
+/* need */
+.need{background:var(--paper)}
+.need .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+.need figure{position:relative}
+.need figure img{width:100%;aspect-ratio:4/3.1;object-fit:cover;border-radius:4px}
+.need figcaption{font-size:.85rem;color:var(--mute);margin-top:.6rem}
+.need ul{list-style:none;padding:0;margin-top:1.4rem;display:grid;gap:.55rem}
+.need li{padding-inline-start:1.6rem;position:relative}
+.need li::before{content:"";position:absolute;inset-inline-start:0;top:.75em;width:.8rem;height:.8rem;border-radius:50%;border:3px solid var(--water)}
+@media(max-width:820px){.need .grid{grid-template-columns:1fr}}
+
+/* method */
+.method{background:var(--abyss);color:#fff}
+.method h2{color:#fff}
+.method .intro{color:#B5D3E0;margin-bottom:2.5rem}
+.steps{list-style:none;padding:0;position:relative;display:grid;gap:0;max-width:820px}
+.steps::before{content:"";position:absolute;inset-inline-start:21px;top:12px;bottom:12px;width:6px;background:linear-gradient(var(--h4),var(--h1));border-radius:3px}
+.steps li{position:relative;padding:0 4.2rem 2rem 0;padding-inline:4.2rem 0}
+.steps li:last-child{padding-bottom:0}
+.steps .nd{position:absolute;inset-inline-start:0;top:0;width:48px;height:48px;border-radius:50%;background:var(--abyss);border:4px solid var(--h3);display:grid;place-items:center;font-family:var(--kufi);font-weight:700;color:#fff}
+.steps h3{font-size:1.15rem;margin-bottom:.2rem}
+.steps p{color:#B5D3E0;font-size:1rem;line-height:1.8}
+.steps .tag{display:inline-block;margin-top:.5rem;font-size:.85rem;background:rgba(211,160,74,.18);color:#EBC888;padding:.1rem .7rem;border-radius:99px}
+
+/* coverage */
+.cover{background:#fff}
+.cover .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+.street{margin-top:1.8rem}
+.street h3{font-size:1.1rem;color:var(--abyss);display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.street h3 span{font-family:var(--sans);font-weight:500;font-size:.95rem;color:var(--mute)}
+.bar{display:flex;align-items:center;margin-top:.6rem;direction:rtl}
+.bar div{height:var(--t);flex:var(--m) 0 0;min-width:0;background:var(--c);border-inline-end:3px solid #fff}
+.bar-wrap{width:calc(var(--tot) / 1270 * 100%)}
+.key{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1.6rem;font-size:.92rem;color:var(--mute)}
+.key span{display:inline-flex;align-items:center;gap:.5rem}
+.key i{width:26px;border-radius:2px;background:var(--c)}
+.cover figure img{width:100%;border-radius:4px;aspect-ratio:16/10;object-fit:cover}
+.cover figcaption{font-size:.85rem;color:var(--mute);margin-top:.6rem}
+@media(max-width:820px){.cover .grid{grid-template-columns:1fr}}
+
+/* gallery */
+.gallery{background:var(--paper)}
+.shots{display:grid;grid-template-columns:repeat(12,1fr);gap:.9rem;margin-top:2rem}
+.shot{grid-column:span var(--s,4);border:0;padding:0;background:none;cursor:zoom-in;text-align:start;font:inherit;color:inherit}
+.shot img{width:100%;aspect-ratio:var(--ar,16/10);object-fit:cover;border-radius:3px;transition:transform .3s}
+.shot span{display:block;font-size:.88rem;line-height:1.6;color:var(--mute);margin-top:.5rem}
+.shot:hover img{transform:scale(1.015)}
+@media(max-width:820px){.shot{grid-column:span 12}}
+dialog{border:0;padding:0;background:transparent;max-width:min(1100px,94vw);width:100%;color:#fff}
+dialog::backdrop{background:rgba(5,20,34,.9)}
+dialog img{width:100%;max-height:78vh;object-fit:contain;border-radius:3px}
+dialog p{margin-top:.8rem;max-width:none;text-align:center}
+dialog button{position:fixed;top:1rem;inset-inline-start:1rem;background:#fff;color:var(--abyss);border:0;border-radius:6px;padding:.5rem 1.1rem;font:600 .95rem var(--kufi);cursor:pointer}
+
+/* partners */
+.partners{background:#fff}
+.pcards{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2rem}
+.pc{border:1px solid var(--line);border-radius:4px;padding:1.6rem;display:flex;gap:1.4rem;align-items:center}
+.pc .lg{flex:none;width:130px;height:90px;display:grid;place-items:center;background:#fff}
+.pc .lg img{max-width:100%;max-height:100%;object-fit:contain}
+.pc h3{font-size:1.05rem;color:var(--abyss)}
+.pc small{display:block;color:var(--water);font-weight:600;font-size:.9rem;margin-bottom:.1rem}
+@media(max-width:720px){.pcards{grid-template-columns:1fr}}
+
+/* after handover */
+.after{background:var(--paper)}
+.after .grid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+.mt{display:grid;gap:1rem;margin-top:1.4rem}
+.mt div{background:#fff;border-inline-start:5px solid var(--water);padding:1.1rem 1.3rem;border-radius:2px}
+.mt div+div{border-color:var(--sand)}
+.mt h3{font-size:1.02rem;color:var(--abyss);margin-bottom:.2rem}
+.mt p{font-size:.98rem;line-height:1.8}
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;padding:1rem 0;font-family:var(--kufi);font-weight:600;font-size:1.02rem;color:var(--abyss);display:flex;justify-content:space-between;gap:1rem;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.5rem;color:var(--water);line-height:1;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 0 1.1rem;color:var(--mute);font-size:1rem;line-height:1.8}
+@media(max-width:820px){.after .grid{grid-template-columns:1fr}}
+
+footer{background:var(--abyss);color:#B5D3E0;padding:3rem 0 2.5rem;font-size:.95rem}
+footer .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:end}
+footer h2{color:#fff;font-size:1.3rem;margin-bottom:.5rem}
+footer dl{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1.2rem}
+footer dt{color:#7FB4C9}
+footer dd{margin:0;color:#fff}
+@media(max-width:720px){footer .wrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="images/emblem.png" alt=""><span>شبكة مياه مواصي القرارة</span></a>
+    <nav aria-label="أقسام الصفحة">
+      <a href="#network">الشبكة</a><a href="#need">الحاجة</a><a href="#method">المنهجية</a><a href="#coverage">التغطية</a><a href="#gallery">الصور</a><a href="#after">بعد التسليم</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" id="network">
+  <div class="wrap">
+    <h1>شبكة مياه بطول <span class="n">4,825</span> متراً تصل إلى مواصي القرارة</h1>
+    <p class="lead">مشروع توزيع وتوصيل شبكات المياه في مواصي القرارة، نُفّذ بين 17 يوليو و10 أغسطس 2026 بالتنسيق مع مصلحة مياه بلديات الساحل، وبتمويل مؤسسة وفاء المحسنين الخيرية.</p>
+    <div class="cta"><a class="btn main" href="#coverage">شاهد التغطية على الخريطة</a><a class="btn alt" href="#gallery">الصور الميدانية</a></div>
+
+    <figure class="pipeviz" aria-label="الشبكة من مصدر التزويد حتى نقاط التوزيع: أطوال الأنابيب بالمقياس، وسماكة كل أنبوب تعبّر عن قطره">
+      <div class="pipe-row">
+        <div class="source"><div><svg viewBox="0 0 24 24" fill="#7FD0EC" aria-hidden="true"><path d="M12 2s7 7.2 7 12a7 7 0 0 1-14 0c0-4.8 7-12 7-12z"/></svg>مصدر التزويد</div></div>
+        <div class="pipe">
+          <button class="seg" style="--m:770;--d:64px;--c:var(--h4);--i:0" data-i="0" aria-label="خط ناقل 4 إنش، 770 متراً"></button>
+          <button class="seg" style="--m:1700;--d:48px;--c:var(--h3);--i:1" data-i="1" aria-label="خطوط توزيع 3 إنش، 1,700 متر"></button>
+          <button class="seg" style="--m:1370;--d:32px;--c:var(--h2);--i:2" data-i="2" aria-label="خطوط فرعية 2 إنش، 1,370 متراً"></button>
+          <button class="seg" style="--m:985;--d:16px;--c:var(--h1);--i:3" data-i="3" aria-label="خطوط توصيل 1 إنش، 985 متراً"></button>
+        </div>
+        <div class="outlet" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <ul class="legend">
+        <li data-i="0" style="--k:var(--h4)"><b>خط ناقل · 4 إنش</b><span class="m">770 م</span><em>ينقل المياه من المصدر</em></li>
+        <li data-i="1" style="--k:var(--h3)"><b>توزيع رئيسي · 3 إنش</b><span class="m">1,700 م</span><em>يغذّي المحاور الرئيسية</em></li>
+        <li data-i="2" style="--k:var(--h2)"><b>توزيع فرعي · 2 إنش</b><span class="m">1,370 م</span><em>يغذّي الأحياء والمخيمات</em></li>
+        <li data-i="3" style="--k:var(--h1)"><b>توصيل · 1 إنش</b><span class="m">985 م</span><em>التوصيلات النهائية</em></li>
+      </ul>
+      <p class="pipenote">أطوال الأنابيب في الرسم بمقياس واحد، وسماكة كل أنبوب تتناسب مع قطره. تنتهي الشبكة عند 20 نقطة توزيع.</p>
+    </figure>
+  </div>
+</section>
+
+<section class="statement" aria-labelledby="st">
+  <div class="wrap">
+    <p id="st">تخدم الشبكة <b>8,952 أسرة</b> في <b>53 مخيماً</b> عبر <b>20 نقطة توزيع</b>، وقد اكتملت كل الكميات المستهدفة.</p>
+    <div class="ledger" role="table" aria-label="جدول الكميات">
+      <h3>ما نُفّذ</h3>
+      <div class="r"><span>خطوط المياه بكل أقطارها</span><i></i><b>4,825 م</b></div>
+      <div class="r"><span>وصلات</span><i></i><b>30</b></div>
+      <div class="r"><span>محابس تحكم</span><i></i><b>20</b></div>
+      <div class="r"><span>نقاط توزيع</span><i></i><b>20</b></div>
+      <div class="r"><span>وصلة ربط رئيسية</span><i></i><b>1</b></div>
+      <div class="r tot"><span>نسبة إنجاز الكميات</span><i></i><b>100%</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="need" id="need">
+  <div class="wrap grid">
+    <figure>
+      <img src="images/children-water-point.jpg" alt="طفلان يعبّئان المياه من نقطة توزيع بين خيام النازحين" loading="lazy">
+      <figcaption>تعبئة المياه من إحدى نقاط التوزيع في أحد المخيمات.</figcaption>
+    </figure>
+    <div>
+      <h2>كان الوصول إلى المياه أصعب من أن يُترك لتوصيلات عشوائية</h2>
+      <p>زاد الضغط على خدمات المياه والبنية التحتية في مواصي القرارة مع الظروف الإنسانية وازدياد أعداد النازحين. احتاجت المخيمات والتجمعات السكنية إلى شبكة تنقل المياه من مصدر التزويد إلى أقرب نقطة من الناس.</p>
+      <ul>
+        <li>خطوط رئيسية وفرعية تصل إلى المناطق ذات التزويد الضعيف</li>
+        <li>ربط المناطق المستهدفة بمصدر تزويد مناسب</li>
+        <li>تقليل الاعتماد على التوصيلات غير المنظمة</li>
+        <li>بنية تحتية يمكن صيانتها وتوسعتها لاحقاً</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="method" id="method">
+  <div class="wrap">
+    <h2>كيف نُفّذ العمل، خطوة بعد خطوة</h2>
+    <p class="intro">نُفّذت الأعمال ميدانياً وبالتدريج، من الخطوط الرئيسية إلى التفرعات الداخلية.</p>
+    <ol class="steps">
+      <li><span class="nd">1</span><h3>المسح الميداني</h3><p>تقييم مسارات الشبكة والتجمعات المستهدفة، وتحديد نقاط الربط والمناطق ذات الأولوية والعوائق المحتملة.</p></li>
+      <li><span class="nd">2</span><h3>التخطيط الفني</h3><p>تقسيم الشبكة حسب القطر: خط ناقل، ثم توزيع رئيسي، ثم توزيع فرعي، ثم توصيلات نهائية.</p></li>
+      <li><span class="nd">3</span><h3>تجهيز المسارات</h3><p>تهيئة المسارات بما يناسب التربة والطرق والممرات والمناطق الرملية في المواصي.</p></li>
+      <li><span class="nd">4</span><h3>تمديد الأنابيب</h3><p>تمديد تدريجي يبدأ بالخطوط الرئيسية ثم الفرعية والتفرعات الداخلية.</p></li>
+      <li><span class="nd">5</span><h3>تركيب الوصلات والملحقات</h3><p>تركيب الوصلات والمحابس ونقاط التوزيع حسب الاحتياج الفعلي.</p><span class="tag">30 وصلة · 20 محبساً · 20 نقطة توزيع</span></li>
+      <li><span class="nd">6</span><h3>الاختبار والفحص</h3><p>فحص سلامة الخطوط ونقاط الربط، وتجربة تشغيلية، ومعالجة أي تسريبات ظهرت.</p></li>
+      <li><span class="nd">7</span><h3>بدء التشغيل</h3><p>تشغيل الشبكة بالتنسيق مع مصلحة مياه بلديات الساحل وبدء الضخ إلى المناطق المستهدفة.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="cover" id="coverage">
+  <div class="wrap grid">
+    <div>
+      <h2>أين وصلت الأنابيب</h2>
+      <p>شملت الأعمال شارع الطينة وشارع العبادلة وشارع فيصل، إضافة إلى المخيمات والتجمعات المجاورة عبر تفرعات وتوصيلات.</p>
+      <div class="street"><h3>شارع الطينة <span>1,270 م</span></h3>
+        <div class="bar-wrap" style="--tot:1270"><div class="bar"><div style="--m:370;--t:28px;--c:var(--c4)"></div><div style="--m:900;--t:20px;--c:var(--c3)"></div></div></div></div>
+      <div class="street"><h3>شارع العبادلة <span>1,000 م</span></h3>
+        <div class="bar-wrap" style="--tot:1000"><div class="bar"><div style="--m:400;--t:28px;--c:var(--c4)"></div><div style="--m:600;--t:20px;--c:var(--c3)"></div></div></div></div>
+      <div class="street"><h3>شارع فيصل <span>200 م</span></h3>
+        <div class="bar-wrap" style="--tot:200"><div class="bar"><div style="--m:200;--t:20px;--c:var(--c3)"></div></div></div></div>
+      <div class="key"><span><i style="height:14px;--c:var(--c4)"></i>خط 4 إنش</span><span><i style="height:10px;--c:var(--c3)"></i>خط 3 إنش</span></div>
+    </div>
+    <figure>
+      <img src="images/map.jpg" alt="صورة جوية لمواصي القرارة مع مسارات الشبكة وأسماء الشوارع" loading="lazy">
+      <figcaption>موقع مواصي القرارة ومسارات الشبكة والمناطق التي شملها التدخل.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <h2>من الميدان</h2>
+    <p>اضغط على أي صورة لتكبيرها.</p>
+    <div class="shots">
+      <button class="shot" style="--s:7" data-full="images/pipe-laying.jpg" data-cap="تمديد أنابيب المياه على المسار أثناء التنفيذ."><img src="images/pipe-laying.jpg" alt="عمال يمدّون أنابيب المياه على المسار" loading="lazy"><span>تمديد أنابيب المياه على المسار أثناء التنفيذ.</span></button>
+      <button class="shot" style="--s:5" data-full="images/fittings-team.jpg" data-cap="فريق العمل يجهّز وصلات الأنابيب وملحقاتها."><img src="images/fittings-team.jpg" alt="فريق العمل يجهّز وصلات الأنابيب" loading="lazy"><span>فريق العمل يجهّز وصلات الأنابيب وملحقاتها.</span></button>
+      <button class="shot" style="--s:4" data-full="images/field-visit.jpg" data-cap="زيارة ميدانية مشتركة لمتابعة عمل إحدى نقاط توزيع المياه."><img src="images/field-visit.jpg" alt="زيارة ميدانية عند نقطة توزيع مياه" loading="lazy"><span>زيارة ميدانية مشتركة لمتابعة عمل إحدى نقاط توزيع المياه.</span></button>
+      <button class="shot" style="--s:4" data-full="images/site-gathering.jpg" data-cap="لقاء ميداني في موقع المشروع بحضور الفرق الفنية والجهات ذات العلاقة."><img src="images/site-gathering.jpg" alt="لقاء ميداني في موقع المشروع" loading="lazy"><span>لقاء ميداني في موقع المشروع بحضور الفرق الفنية والجهات ذات العلاقة.</span></button>
+      <button class="shot" style="--s:4" data-full="images/coordination-meeting.jpg" data-cap="اجتماع التنسيق الفني بين فريق المشروع والجهات ذات العلاقة."><img src="images/coordination-meeting.jpg" alt="اجتماع تنسيق فني أمام شاشة المخططات" loading="lazy"><span>اجتماع التنسيق الفني بين فريق المشروع والجهات ذات العلاقة.</span></button>
+      <button class="shot" style="--s:6" data-full="images/planning-session.jpg" data-cap="جلسة مراجعة مسارات الشبكة على المخطط الهندسي."><img src="images/planning-session.jpg" alt="جلسة مراجعة مسارات الشبكة" loading="lazy"><span>جلسة مراجعة مسارات الشبكة على المخطط الهندسي.</span></button>
+      <button class="shot" style="--s:6" data-full="images/technical-discussion.jpg" data-cap="نقاش فني حول مسارات الخطوط ونقاط الربط."><img src="images/technical-discussion.jpg" alt="نقاش فني حول مسارات الخطوط" loading="lazy"><span>نقاش فني حول مسارات الخطوط ونقاط الربط.</span></button>
+    </div>
+  </div>
+</section>
+<dialog id="lb" aria-label="عرض الصورة"><form method="dialog"><button>إغلاق</button></form><img alt=""><p></p></dialog>
+
+<section class="partners" id="partners">
+  <div class="wrap">
+    <h2>من نفّذ ومن موّل</h2>
+    <div class="pcards">
+      <div class="pc"><div class="lg"><img src="images/logo-ihsan-vefa.png" alt="شعار مؤسسة وفاء المحسنين"></div><div><small>التمويل</small><h3>مؤسسة وفاء المحسنين الخيرية</h3></div></div>
+      <div class="pc"><div class="lg"><img src="images/logo-coastal-water.png" alt="شعار مصلحة مياه بلديات الساحل"></div><div><small>التنفيذ والإشراف</small><h3>مصلحة مياه بلديات الساحل</h3></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="after" id="after">
+  <div class="wrap grid">
+    <div>
+      <h2>ما بعد التسليم</h2>
+      <p>لتبقى الشبكة تعمل، يوصي التقرير بآلية واضحة للمتابعة والصيانة.</p>
+      <div class="mt">
+        <div><h3>صيانة دورية</h3><p>فحص منتظم للخطوط الرئيسية والفرعية ونقاط التوصيل والمحابس ونقاط التوزيع ومناطق الربط.</p></div>
+        <div><h3>صيانة طارئة</h3><p>آلية للإبلاغ عن التسربات وانقطاع الخطوط وتلف الوصلات وأعطال المحابس وانخفاض الضغط وأي تعدٍّ على الشبكة.</p></div>
+      </div>
+    </div>
+    <div>
+      <h2>توصيات التقرير</h2>
+      <details><summary>اعتماد خطة صيانة دورية</summary><p>جدول صيانة دوري للخطوط الرئيسية والفرعية ونقاط التوزيع.</p></details>
+      <details><summary>إنشاء سجل مركزي للشبكة</summary><p>توثيق الخطوط والوصلات والمحابس ونقاط التوزيع مع مواقعها ومساراتها.</p></details>
+      <details><summary>تحديث خريطة الشبكة</summary><p>خريطة GIS أو مخطط هندسي يوضح خطوط 4 و3 و2 و1 إنش والمحابس ونقاط التوزيع والربط.</p></details>
+      <details><summary>منع التوصيلات العشوائية</summary><p>تنظيم أي توصيلات مستقبلية عبر الجهة المسؤولة عن الشبكة لمنع انخفاض الضغط وزيادة التسرب.</p></details>
+      <details><summary>التوسع حسب الحاجة</summary><p>إضافة تفرعات في المناطق التي تشهد توسعاً سكانياً أو مخيمات جديدة.</p></details>
+      <details><summary>متابعة ضغط المياه</summary><p>قياسات دورية للضغط في النقاط الرئيسية والأطراف للتأكد من كفاءة التوزيع.</p></details>
+      <details><summary>تعزيز التنسيق التشغيلي</summary><p>استمرار التنسيق مع محطة مياه الساحل بشأن جداول الضخ والاحتياجات الفنية.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h2>توزيع وتوصيل شبكات المياه، مواصي القرارة</h2><p>التقرير النهائي لإنجاز المشروع، بتاريخ 07/10/2026.</p></div>
+    <dl>
+      <dt>الموقع</dt><dd>محافظة خانيونس، القرارة، مواصي القرارة</dd>
+      <dt>القطاع</dt><dd>المياه والإصحاح والنظافة الصحية (WASH)</dd>
+      <dt>فترة التنفيذ</dt><dd>17/07/2026 – 10/08/2026</dd>
+      <dt>الحالة</dt><dd>منجز / مكتمل</dd>
+    </dl>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var segs=[].slice.call(document.querySelectorAll('.seg')),lis=[].slice.call(document.querySelectorAll('.legend li'));
+  function on(i){segs.forEach(function(s){s.classList.toggle('on',s.dataset.i==i)});lis.forEach(function(l){l.classList.toggle('on',l.dataset.i==i)})}
+  function off(){on(-1)}
+  segs.concat(lis).forEach(function(e){e.addEventListener('mouseenter',function(){on(e.dataset.i)});e.addEventListener('mouseleave',off);e.addEventListener('focus',function(){on(e.dataset.i)});e.addEventListener('blur',off)});
+  var lb=document.getElementById('lb'),im=lb.querySelector('img'),cp=lb.querySelector('p');
+  [].forEach.call(document.querySelectorAll('.shot'),function(b){b.addEventListener('click',function(){im.src=b.dataset.full;im.alt=b.dataset.cap;cp.textContent=b.dataset.cap;lb.showModal()})});
+  lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
+})();
+</script>
+</body>
+</html>
